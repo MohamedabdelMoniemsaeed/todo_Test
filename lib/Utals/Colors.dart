@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 abstract class AppColors {
   static const Color primiary = Color(0xff5D9CEC);
-  static const Color accent = Color(0xffC8C9CB);
+  static const Color accent = Color(0xffdfecdb);
   static const Color grean = Color(0xff61E757);
   static const Color textTaem = Color(0xff200E32);
   static const Color white = Colors.white;
