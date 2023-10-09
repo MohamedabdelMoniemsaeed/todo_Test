@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo/Utils/Colors.dart';
+import 'package:todo/Utals/Colors.dart';
 
 abstract class AppTheme {
   static const TextStyle appBar = TextStyle(
@@ -23,13 +23,29 @@ abstract class AppTheme {
         backgroundColor: AppColors.primiary,
         elevation: 0,
         titleTextStyle: AppTheme.appBar),
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          selectedIconTheme: IconThemeData(size: 32),
-          unselectedIconTheme: IconThemeData(size: 32),
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          selectedItemColor: AppColors.primiary,
-unselectedItemColor: AppColors.dawnbutton,
-        ),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      selectedIconTheme: IconThemeData(size: 32),
+      unselectedIconTheme: IconThemeData(size: 32),
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      selectedItemColor: AppColors.primiary,
+      unselectedItemColor: AppColors.dawnbutton,
+    ),
+  );
+  
+  static ThemeData darkTheme = ThemeData(
+    primaryColor: AppColors.primiary,
+    appBarTheme: const AppBarTheme(
+        backgroundColor: AppColors.primiary,
+        elevation: 0,
+        titleTextStyle: AppTheme.appBar),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      selectedIconTheme: IconThemeData(size: 32),
+      unselectedIconTheme: IconThemeData(size: 32),
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      selectedItemColor: AppColors.primiary,
+      unselectedItemColor: AppColors.dawnbutton,
+    ),
   );
 }
