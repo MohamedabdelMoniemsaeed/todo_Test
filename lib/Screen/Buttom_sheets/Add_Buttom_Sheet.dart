@@ -3,13 +3,22 @@ import 'package:todo/Utals/Colors.dart';
 import 'package:todo/Utals/My_Text_Field.dart';
 import 'package:todo/Utals/Theme.dart';
 
-class AddButtomSheet extends StatelessWidget {
+class AddButtomSheet extends StatefulWidget {
   static const String rouatName = "Add Button Sheet";
-  const AddButtomSheet({super.key});
 
+  @override
+  State<AddButtomSheet> createState() => _AddButtomSheetState();
+}
+
+class _AddButtomSheetState extends State<AddButtomSheet> {
+  TextEditingController titlecontroller = TextEditingController();
+
+  TextEditingController descriptioncontroller = TextEditingController();
+  DateTime selectdate = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(20),
       height: MediaQuery.of(context).size.height * .45,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -18,21 +27,46 @@ class AddButtomSheet extends StatelessWidget {
           Text("Add New Task",
               textAlign: TextAlign.center, style: AppTheme.addandEdit),
           SizedBox(height: 10),
-          MyTextField("Enter your Task"),
+          MyTextField("Enter your Task", titlecontroller),
           SizedBox(height: 10),
-          MyTextField("Enter Description"),
+          MyTextField("Enter Description", descriptioncontroller),
           SizedBox(height: 40),
           Text("Select time", style: AppTheme.selectteam),
           SizedBox(height: 10),
-          Text("10/10/2023",
-              textAlign: TextAlign.center, style: AppTheme.TeamText),
+          InkWell(
+            onTap: () {
+              showMyDate();
+            },
+            child: Text("${selectdate.day}/${selectdate.month}/${selectdate.year}",
+                textAlign: TextAlign.center, style: AppTheme.TeamText),
+          ),
           Spacer(),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.add),
+          ElevatedButton(
+            onPressed: () {
+              addToDoTO();
+            },
+            child: Text("Add"),
           ),
         ],
       ),
     );
   }
+
+  void showMyDate() async {
+    selectdate = await showDatePicker(
+          context: context,
+          initialDate: selectdate,
+          firstDate: DateTime.now(),
+          lastDate: DateTime.now().add(
+            Duration(days: 365),
+          ),
+        ) ??
+        selectdate;
+        setState(() {
+          
+        });
+        
+  }
+
+  void addToDoTO() {}
 }

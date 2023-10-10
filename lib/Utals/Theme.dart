@@ -43,6 +43,7 @@ abstract class AppTheme {
         space: 17,
         endIndent: 26,
         indent: 26),
+        
   );
   
   static ThemeData darkTheme = ThemeData(

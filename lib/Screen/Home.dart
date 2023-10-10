@@ -59,5 +59,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ]),
       );
 
-  PreferredSizeWidget buildAppBar() => AppBar(title: Text("To Do List"),toolbarHeight: MediaQuery.of(context).size.height *.1,);
+  PreferredSizeWidget buildAppBar() => AppBar(title: Text("To Do List"),
+  toolbarHeight: MediaQuery.of(context).size.height *.1,);
 }

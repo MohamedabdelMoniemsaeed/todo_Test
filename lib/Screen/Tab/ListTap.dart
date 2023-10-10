@@ -9,32 +9,38 @@ class ListTab extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: MediaQuery.of(context).size.height *.15,
+          height: MediaQuery.of(context).size.height * .15,
           child: Stack(
             children: [
-              Column(
-                children: [
-                  Expanded(child: Container(color: AppColors.primiary,)),
-                  Expanded(child: Container(color: AppColors.accent,)),
-                ],
+              Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                        colors: [AppColors.primiary, AppColors.accent],
+                        stops: [0.1,5])),
               ),
-              
-              
+              // Column(
+              //   children: [
+              //     Expanded(child: Container(color: AppColors.primiary,)),
+              //     Expanded(child: Container(color: AppColors.accent,)),
+              //   ],
+              // ),
+
               CalendarTimeline(
-              initialDate: DateTime.now(),
-              firstDate: DateTime.now().subtract(Duration(days: 365)),
-              lastDate: DateTime.now().add(Duration(days: 365)),
-              onDateSelected: (date) => print(date),
-              leftMargin: 20,
-              monthColor: AppColors.black,
-              dayColor: AppColors.black,
-              activeDayColor: AppColors.primiary,
-              activeBackgroundDayColor: AppColors.white,
-              dotsColor: AppColors.transparent,
-              
-              locale: 'en_ISO',
-            ),],
-            
+                initialDate: DateTime.now(),
+                firstDate: DateTime.now().subtract(Duration(days: 365)),
+                lastDate: DateTime.now().add(Duration(days: 365)),
+                onDateSelected: (date) => print(date),
+                leftMargin: 20,
+                monthColor: AppColors.black,
+                dayColor: AppColors.black,
+                activeDayColor: AppColors.primiary,
+                activeBackgroundDayColor: AppColors.white,
+                dotsColor: AppColors.transparent,
+                locale: 'en_ISO',
+              ),
+            ],
           ),
         ),
         Expanded(
