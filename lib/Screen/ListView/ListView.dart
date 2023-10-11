@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:todo/Screen/data/data.dart';
 import 'package:todo/Utals/Colors.dart';
 import 'package:todo/Utals/Theme.dart';
 
 class ListViewTab extends StatelessWidget {
+  final dataadd model;
+  ListViewTab({required this.model});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,14 +39,14 @@ class ListViewTab extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Tital Task",
+                      model.title,
                       style: AppTheme.titaltext,
                     ),
                     SizedBox(
                       height: 10,
                     ),
                     Text(
-                      "body Task",
+                      model.description,
                       style: AppTheme.TeamText,
                     ),
                   ],

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:todo/Utals/Colors.dart';
 import 'package:todo/Utals/My_Text_Field.dart';
 import 'package:todo/Utals/Theme.dart';
+// ignore: depend_on_referenced_packages
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AddButtomSheet extends StatefulWidget {
   static const String rouatName = "Add Button Sheet";
@@ -12,9 +13,9 @@ class AddButtomSheet extends StatefulWidget {
 
 class _AddButtomSheetState extends State<AddButtomSheet> {
   TextEditingController titlecontroller = TextEditingController();
-
   TextEditingController descriptioncontroller = TextEditingController();
   DateTime selectdate = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,8 +38,10 @@ class _AddButtomSheetState extends State<AddButtomSheet> {
             onTap: () {
               showMyDate();
             },
-            child: Text("${selectdate.day}/${selectdate.month}/${selectdate.year}",
-                textAlign: TextAlign.center, style: AppTheme.TeamText),
+            child: Text(
+                "${selectdate.day}/${selectdate.month}/${selectdate.year}",
+                textAlign: TextAlign.center,
+                style: AppTheme.TeamText),
           ),
           Spacer(),
           ElevatedButton(
@@ -62,11 +65,28 @@ class _AddButtomSheetState extends State<AddButtomSheet> {
           ),
         ) ??
         selectdate;
-        setState(() {
-          
-        });
-        
+    setState(() {});
   }
 
-  void addToDoTO() {}
+  void addToDoTO() {
+    CollectionReference todoCollectionref =
+        FirebaseFirestore.instance.collection("todos");
+    DocumentReference newEmptyDoc = todoCollectionref.doc();
+    newEmptyDoc.set({
+      "id": newEmptyDoc.id,
+      "title": titlecontroller.text,
+      "description": descriptioncontroller.text,
+      "date": selectdate,
+      "isDone": false,
+    }).timeout(Duration(milliseconds: 300), onTimeout: () {
+      Navigator.pop(context);
+    });
+    // todoCollectionref.add({
+    //   "id": ,
+    //   "title": titlecontroller.text,
+    //   "description": descriptioncontroller.text,
+    //   "date": selectdate,
+    //   "isDone": false,
+    // });
+  }
 }
